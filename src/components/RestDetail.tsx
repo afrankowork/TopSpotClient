@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
 import food from '../assets/food.svg';
 import EditComment from './comments/EditComment'
+import APIURL from '../helpers/environment'
 
 type DetailState = {
     show: boolean
@@ -68,7 +69,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
           let requestHeaders: any = {'Content-Type':'application/json',
         'Authorization' : this.state.token}
         const commentFind = await fetch(
-            `http://localhost:3000/comment/getComm/${this.state.id}`,
+            `${APIURL}/comment/getComm/${this.state.id}`,
             {method: 'GET',
            
             headers: requestHeaders }
@@ -102,7 +103,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
         let requestHeaders: any = {'Content-Type':'application/json',
         'Authorization' : this.state.token}
 
-        fetch('http://localhost:3000/comment', {
+        fetch(`${APIURL}/comment`, {
             method: 'POST',
             body: JSON.stringify({comment: this.state.comm, restaurantID: this.state.id, starRating: this.state.rating}),
             headers: requestHeaders
@@ -118,7 +119,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
         let requestHeaders1: any = {'Content-Type':'application/json',
         'Authorization' : this.state.token}
 
-        fetch('http://localhost:3000/rest', {
+        fetch(`${APIURL}/rest`, {
             method: 'POST',
             body: JSON.stringify({restName: this.state.data.name, address: this.state.data.location.address, visited: false}),
             headers: requestHeaders1

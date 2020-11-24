@@ -1,5 +1,6 @@
 import React from 'react';
 import {Modal, ModalBody, Label, ModalFooter, Input, Button} from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 type EditState = {
     modal: boolean
@@ -38,7 +39,7 @@ class EditComment extends React.Component<AcceptedProps, EditState>{
         let requestHeaders: any = {'Content-Type':'application/json',
         'Authorization' : tokenInfo}
         const restFind = await fetch(
-            `http://localhost:3000/comment`,
+            `${APIURL}/comment`,
             { method: 'PUT', headers:  requestHeaders, body: JSON.stringify({comment: this.state.comment, id: this.props.id})}
           );
             

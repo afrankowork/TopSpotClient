@@ -1,6 +1,6 @@
 import React from 'react';
 import {Modal, ModalFooter, ModalHeader, Label, ModalBody, Button, Input} from 'reactstrap';
-
+import APIURL from '../helpers/environment'
 
 type UpdateState = {
 
@@ -43,7 +43,7 @@ class UpdateItem extends React.Component<AcceptedProps, UpdateState>{
         let requestHeaders: any = {'Content-Type':'application/json',
         'Authorization' : tokenInfo}
         const restFind = await fetch(
-            `http://localhost:3000/rest`,
+            `${APIURL}/rest`,
             { method: 'PUT', headers:  requestHeaders, body: JSON.stringify({notes: this.state.notes, id: this.props.restID})}
           );
             

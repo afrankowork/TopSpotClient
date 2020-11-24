@@ -1,5 +1,6 @@
 import React from 'react';
 import{Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import APIURL from '../helpers/environment'
 
 type UserState = {
     username: string;
@@ -28,7 +29,7 @@ class Signup extends React.Component<AcceptedProps, UserState> {
 
     handleSubmit(event: any)  {
         event.preventDefault();
-        fetch('http://localhost:3000/user/register', {
+        fetch(`${APIURL}/user/register`, {
             method: 'POST',
             body: JSON.stringify({user: {email: this.state.email, username: this.state.username, password: this.state.password}}),
             headers: new Headers({

@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Modal, ModalBody, ModalHeader, Input, ModalFooter, Label} from 'reactstrap'
 import UpdateItem from './UpdateItem';
 import DeleteItem from './DeleteItem';
+import APIURL from '../helpers/environment';
 
 type ListState = {
     token: string | null
@@ -38,7 +39,7 @@ class ToTryList extends React.Component<AcceptedProps, ListState>{
         let requestHeaders: any = {'Content-Type':'application/json',
         'Authorization' : localStorage.getItem('token')}
         const restFind = await fetch(
-            `http://localhost:3000/rest`,
+            `${APIURL}/rest`,
             {method: 'GET',
             headers: requestHeaders }
           );

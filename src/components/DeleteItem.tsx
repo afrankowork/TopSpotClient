@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from 'reactstrap';
-
+import APIURL from '../helpers/environment';
 
 type AcceptedProps = {
     restID: string, 
@@ -18,7 +18,7 @@ class DeleteItem extends React.Component<AcceptedProps>{
         let requestHeaders: any = {'Content-Type':'application/json',
         'Authorization' : this.props.token}
         fetch(
-            `http://localhost:3000/rest/${this.props.restID}`,
+            `${APIURL}/rest/${this.props.restID}`,
             { method: 'DELETE', headers:  requestHeaders,}
           );
 
