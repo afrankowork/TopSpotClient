@@ -8,7 +8,7 @@ switch (window.location.hostname) {
 
     case 'af-topspots-client.herokuapp.com':
 
-        APIURL = 'https://af-topspots-client.herokuapp.com'
+        APIURL = 'https://af-topspots-server.herokuapp.com'
 
 }
 
