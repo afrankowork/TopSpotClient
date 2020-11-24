@@ -1,11 +1,12 @@
 import { ReactComponent } from '*.svg';
 import React from 'react';
-import {Form, FormGroup, Label, Input, Button, Container, Col, Row} from 'reactstrap';
+import {Form, FormGroup, Label, Input, Button, Container, Col, Row, Modal} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 type SearchState = {
     city: string;
     bestRest: Array<string>;
+    
 }
 
 type MyProp = {
@@ -21,7 +22,8 @@ class RestSearch extends React.Component<MyProp, SearchState>{
         this.locationSearch = this.locationSearch.bind(this)
         this.state = {
             city: '',
-            bestRest: []
+            bestRest: [],
+            
 
         }
     }
@@ -94,6 +96,10 @@ class RestSearch extends React.Component<MyProp, SearchState>{
                 )
             })
         }
+
+        
+
+        
     
 
     render(){

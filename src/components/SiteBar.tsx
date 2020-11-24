@@ -18,6 +18,7 @@ import {
 import Auth from '../auth/Auth';
 import RestSearch from'./RestSearch';
 import RestDetail from './RestDetail';
+import ToTryList from './ToTryList';
 
 
 type OpenState = {
@@ -26,7 +27,10 @@ type OpenState = {
 
 type AcceptedProps = {
     updateToken: Function;
+    
 }
+
+
 
 class SiteBar extends React.Component<AcceptedProps, OpenState> {
     
@@ -55,6 +59,7 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
                 <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="mr-auto" navbar>
                 <NavLink href="/restsearch">Top Rated Spots in Your City</NavLink>
+                <NavLink href="/totrylist">Try Later!</NavLink>
             </Nav>
           <NavbarText>Simple Text</NavbarText>
         </Collapse>
@@ -68,6 +73,10 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
             </Route>
             {/* Route for more details page to display comments */}
             <Route exact path='/restsearch/:id' component={RestDetail}/>
+
+            <Route exactpath='/totrylist'>
+                <ToTryList token={localStorage.getItem('token')}/>
+            </Route>
                 
             
 

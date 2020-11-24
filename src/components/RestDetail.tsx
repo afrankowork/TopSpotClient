@@ -1,9 +1,9 @@
 import React, { Props } from 'react';
 import { Container, Row, Col, FormGroup, Form, Label, Input, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
 import food from '../assets/food.svg';
-
+import EditComment from './comments/EditComment'
 
 type DetailState = {
     show: boolean
@@ -38,6 +38,8 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
         this.toggle = this.toggle.bind(this);
         this.toggleTwo = this.toggleTwo.bind(this);
         this.submitComm = this.submitComm.bind(this);
+        this.sendRest = this.sendRest.bind(this);
+        this.locationDetails = this.locationDetails.bind(this);
         this.state = {
             show: false,
             comm: '',
@@ -47,7 +49,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
             token: localStorage.getItem('token'),
             comments: [],
             showComm: false
-           
+            
         }
     }
 
@@ -111,6 +113,22 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
         this.locationDetails();
     }
 
+    sendRest(){
+        console.log(this.state.data.name)
+        let requestHeaders1: any = {'Content-Type':'application/json',
+        'Authorization' : this.state.token}
+
+        fetch('http://localhost:3000/rest', {
+            method: 'POST',
+            body: JSON.stringify({restName: this.state.data.name, address: this.state.data.location.address, visited: false}),
+            headers: requestHeaders1
+        }).then((response) => response.json()).
+        then((data) => {
+            console.log(data)
+        })
+
+    }
+
     submitComm(){
         
         localStorage.getItem('token') ? 
@@ -129,6 +147,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
                 <>
             <p>{info.username}: {info.comment}</p>
             <p>Star Rating: {info.starRating}</p>
+            <EditComment id={info.id} comment={info.comment} token={localStorage.getItem('token')} locationDetails={this.locationDetails}/>
             </>
         )})}
         else {
@@ -158,6 +177,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
                     <p>Hours: {this.state.data.timings}</p>
                     <p>Phone: {this.state.data.phone_numbers}</p>
                     <p>Date Night Cost: ${this.state.data.average_cost_for_two}</p>
+                    <Button onClick={this.sendRest}>Try Later</Button>
                </Col>
            </Row>
            <Col>
@@ -176,9 +196,10 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
                 </Form> : <div></div>}
                 </Col>
                 <br/>
-                <Button onClick={this.toggleTwo}>Show Comments</Button>
+                <Button onClick={this.toggleTwo}>
+                    {this.state.showComm ? <p>Hide Comments</p> : <p>Show Comments</p>}</Button>
                 <div>
-                {this.state.showComm ? <div>{this.commentMapper()}</div>: <h1>Nope</h1>}
+                {this.state.showComm ? <div>{this.commentMapper()}</div>: <></>}
                 </div>
                 </Container>
                 
