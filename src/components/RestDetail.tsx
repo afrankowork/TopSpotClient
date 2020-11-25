@@ -165,6 +165,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
 
 
     render(){
+
         return(
             <div>
                 <h1>{this.state.data.name}</h1>

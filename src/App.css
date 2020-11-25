@@ -1,38 +1,26 @@
-.App {
-  text-align: center;
+/* ? Landing Page Styling */
+
+.divContainer {
+  background-color: lightslategray;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+#navbarStyle {
+  background-color: green;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.authContainer {
+  padding-top: 8%;
+  font-size: 1em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#headerIntro {
+  font-size: 4em;
+}
+
+#colOne {
+  border: 1px solid green;
+  text-align: center;
+  padding-top: 30px;
+  margin-right: 50px;
 }

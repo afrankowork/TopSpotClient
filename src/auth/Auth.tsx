@@ -4,6 +4,7 @@ import {Container, Row, Col, Button} from 'reactstrap';
 import Signup from './Signup';
 import Login from './Login';
 
+
 type LoginState = {
     isLogin: boolean;
 }
@@ -33,30 +34,25 @@ class Auth extends React.Component<AcceptedProps,LoginState> {
 
 render(){
     return(
-        <div>
+        
             <Container className='authContainer'>
             <Row>
-                <Col md='4'>
-                <h1>Top Spots</h1>
+                <Col id='colOne'>
+                <h1 id="headerIntro">Top Spots</h1>
+                
                 </Col>
-                <Col md='4'>
-                    <p>
-                        Top Spots is meant to answer the question of Where are we eating tonight? 
-                        I have spent too long on trying to decide where to eat and find a place that suits
-                        everyone. Top Spots is meant to show users the top restaurants in their area or if they
-                        are traveling to then show them options in the city they will be heading to. Below we have a
-                        button that allows us to grab your geolocation to display the top 10 restaurants near you. If not
-                        all good you can search for restaurants and provide a location
+                <Col id='colTwo'>
+                    <p id='introText'>
+                        Top Spots allows users to narrow down a place to eat by looking at the best user rated restaurants in their area.
+                        Click <i>Top Rated Spots</i> above and find the best restaurants near you! To gain access to all the features make an account over to the right!
                     </p>
-                    
-              
                 </Col>
-                <Col md='4'>
+                <Col  id='colThree'>
                     {this.state.isLogin ? <Login updateToken={this.props.updateToken} toggleLogin={this.toggleLogin}/> : <Signup updateToken={this.props.updateToken} toggleLogin={this.toggleLogin}/>}
                 </Col>       
             </Row>
             </Container>
-        </div>
+        
     )
 }
 

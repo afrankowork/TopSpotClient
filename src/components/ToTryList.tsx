@@ -84,12 +84,21 @@ class ToTryList extends React.Component<AcceptedProps, ListState>{
 
 
     render(){
+
+        if(this.props.token == null) {
+            return(
+                <div>
+                    Must Be Signed In To Access This Feature
+                </div>
+            )
+        }
+        else {
         return(
             <div>
                 {this.listMapper()}
             </div>
-        )
-    }
+        ) }}
+       
 
 
 

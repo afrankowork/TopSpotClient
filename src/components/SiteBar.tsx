@@ -6,7 +6,8 @@ import {
     NavbarBrand,
     Nav,
     NavLink,
-    NavbarText
+    NavbarText,
+    
   } from 'reactstrap';
   import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,6 +20,7 @@ import Auth from '../auth/Auth';
 import RestSearch from'./RestSearch';
 import RestDetail from './RestDetail';
 import ToTryList from './ToTryList';
+import '../App.css';
 
 
 type OpenState = {
@@ -27,7 +29,7 @@ type OpenState = {
 
 type AcceptedProps = {
     updateToken: Function;
-    
+    deleteToken: Function;
 }
 
 
@@ -36,6 +38,7 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
     
     constructor(props: AcceptedProps) {
         super(props)
+        this.delete = this.delete.bind(this);
         this.toggle = this.toggle.bind(this); //Figure out what the bind does
         this.state = {
             isOpen: false
@@ -48,20 +51,27 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
         })
     }
 
+    delete() {
+        this.props.deleteToken()
+    }
+
     
     render() {
         return(
             <div>
                 <Router>
-            <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">reactstrap</NavbarBrand>
+            <Navbar id="navbarStyle" expand="md">
+            <NavbarBrand href="/">Home</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="mr-auto" navbar>
-                <NavLink href="/restsearch">Top Rated Spots in Your City</NavLink>
+                <NavLink href="/restsearch">Top Rated Spots</NavLink>
                 <NavLink href="/totrylist">Try Later!</NavLink>
             </Nav>
-          <NavbarText>Simple Text</NavbarText>
+            {localStorage.getItem('token') ?
+            <NavbarText>
+                <a href="/" onClick={this.delete}>Logout</a>
+            </NavbarText> : <> </>} 
         </Collapse>
       </Navbar>
       <Switch>
@@ -77,6 +87,8 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
             <Route exactpath='/totrylist'>
                 <ToTryList token={localStorage.getItem('token')}/>
             </Route>
+
+            
                 
             
 
