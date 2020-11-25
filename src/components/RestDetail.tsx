@@ -146,7 +146,8 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
         return this.state.comments.map((info: any) => {
             return(
                 <>
-            <p>{info.username}: {info.comment}</p>
+            <p>Username: {info.username} </p>
+            <p>Comment: {info.comment}</p>
             <p>Star Rating: {info.starRating}</p>
             <EditComment id={info.id} comment={info.comment} token={localStorage.getItem('token')} locationDetails={this.locationDetails}/>
             </>
@@ -165,34 +166,37 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
 
 
     render(){
-
+        console.log(this.state.data)
         return(
-            <div>
-                <h1>{this.state.data.name}</h1>
+            <div id='detailContainer'>
+                <h1 id='detailHeader'>{this.state.data.name}</h1>
                 <Container>
            <Row>
                <Col sm="6">
                    <img src={food} alt="" height="250px" width="250px"/>
                </Col>
-               <Col sm="6">
+               <Col id='detailTextContainer' sm="6">
                     <p>Type: {this.state.data.cuisines}</p>
                     <p>Hours: {this.state.data.timings}</p>
                     <p>Phone: {this.state.data.phone_numbers}</p>
                     <p>Date Night Cost: ${this.state.data.average_cost_for_two}</p>
+                    <p><a href={this.state.data.menu_url}>View Menu</a></p>
                     <Button onClick={this.sendRest}>Try Later</Button>
                </Col>
            </Row>
            <Col>
            <h3>Comments</h3>
+           <h5>Click + to Add</h5>
            <Button onClick={this.toggle}><FontAwesomeIcon icon={faPlusSquare} size="3x" /></Button>
            {this.state.show ? <Form>
                     <FormGroup>
                         <Label htmlFor="name">Add a Comment!</Label>
-                        <Input onChange={(e) => this.setState({comm: e.target.value})} id="name" value={this.state.comm}/>
+                        <Input placeholder='eg: Food was Amazing, Our Server was fantastic'onChange={(e) => this.setState({comm: e.target.value})} id="name" value={this.state.comm}/>
                         
                         <br/>
                         <Label htmlFor="rating">Leave a Star Rating 0-5</Label>
                         <Input type="number" max="5" min="0" onChange={(e) => this.setState({rating: e.target.value})}></Input>
+                        <br/>
                         <Button onClick={this.submitComm}>Submit Comment!</Button>
                     </FormGroup>
                 </Form> : <div></div>}
@@ -200,7 +204,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
                 <br/>
                 <Button onClick={this.toggleTwo}>
                     {this.state.showComm ? <p>Hide Comments</p> : <p>Show Comments</p>}</Button>
-                <div>
+                <div id='commentContainer'>
                 {this.state.showComm ? <div>{this.commentMapper()}</div>: <></>}
                 </div>
                 </Container>

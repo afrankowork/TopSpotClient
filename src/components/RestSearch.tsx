@@ -2,6 +2,7 @@ import { ReactComponent } from '*.svg';
 import React from 'react';
 import {Form, FormGroup, Label, Input, Button, Container, Col, Row, Modal} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import placeHolder from '../assets/placeHolder.jpg';
 
 type SearchState = {
     city: string;
@@ -74,20 +75,22 @@ class RestSearch extends React.Component<MyProp, SearchState>{
 
         topMapper(){
             console.log(this.state.bestRest);
-            return this.state.bestRest.map((rest: any) => {
+            return this.state.bestRest.map((rest: any, index: number) => {
                 return(
-                    <Row>
+                    <Row id='searchRow'>
                            <Col xs="6">
-                     <img src={rest.photos_url} alt=""/>
+                     <img height='250px' width='250px' src={placeHolder} alt=""/>
+                     <p>Your Image Here!</p>
                      </Col>
-                     <Col xs="6">
-                     <h4>Name: {rest.name}</h4>
+                     <Col xs="6" id='restCol'>
+                     <h4>{index + 1}. {rest.name}</h4>
+                     <br/>
                     <p>Type of Cuisine: {rest.cuisines}</p>
+                    <p style={{color: '#'+rest.user_rating.rating_color}}>User Rating: {rest.user_rating.aggregate_rating}/5</p>
                     <p>Hours: {rest.timings}</p>
                     <p>Cost for Two: ${rest.average_cost_for_two}</p>
-                    <p>User Rating {rest.user_rating.aggregate_rating}</p>
-                    <p>Id: {rest.R.res_id}</p>
-                    <Link to={`/restsearch/${rest.R.res_id}`}>More Details</Link>
+                    
+                    <Link to={`/restsearch/${rest.R.res_id}`}>Click Here For More Details</Link>
                     <br/>
                     </Col>
                     <br/>
@@ -104,18 +107,18 @@ class RestSearch extends React.Component<MyProp, SearchState>{
 
     render(){
         return(
-            <div>
-                <Form onSubmit={this.locationSearch}>
+            <div id='searchDiv'>
+                <Form id='searchForm' onSubmit={this.locationSearch}>
                 <FormGroup>
-                    <Label htmlFor="ratingSearch">Enter a City Name and See the Top 10 Restaurants</Label>
-                    <Input onChange={(e) => this.setState({city: e.target.value})} name='city' value={this.state.city} />
+                    <h4>City Search</h4>
+                    <Input placeholder='eg: New York, Chicago, Indianapolis'id='searchInput' onChange={(e) => this.setState({city: e.target.value})} name='city' value={this.state.city} />
                 </FormGroup>
                 <Button type='submit'>Search</Button>
             </Form>
             <br/>
-            <h3>Best Rated Restaurants in Your City</h3>
+            <h3 id='searchHeader'>Best Rated Restaurants in Your City:</h3>
             <br/>
-            <Container>
+            <Container id='searchContainer'>
                 {this.topMapper()}
             </Container>
             </div>

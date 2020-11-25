@@ -3,6 +3,7 @@ import React from 'react';
 import {Container, Row, Col, Button} from 'reactstrap';
 import Signup from './Signup';
 import Login from './Login';
+import logo from '../assets/logo.png'
 
 
 type LoginState = {
@@ -34,25 +35,34 @@ class Auth extends React.Component<AcceptedProps,LoginState> {
 
 render(){
     return(
-        
-            <Container className='authContainer'>
-            <Row>
-                <Col id='colOne'>
-                <h1 id="headerIntro">Top Spots</h1>
+        <>
+        <div id='landContainer'>
+            <div id='landHeader'>
                 
-                </Col>
-                <Col id='colTwo'>
-                    <p id='introText'>
-                        Top Spots allows users to narrow down a place to eat by looking at the best user rated restaurants in their area.
-                        Click <i>Top Rated Spots</i> above and find the best restaurants near you! To gain access to all the features make an account over to the right!
+                <img id='landImg' height='650px' width='650px' src={logo} alt=""/>
+            </div>
+           
+            <div id='landForm'>
+                {this.state.isLogin ? <Login updateToken={this.props.updateToken} toggleLogin={this.toggleLogin}/> : <Signup updateToken={this.props.updateToken} toggleLogin={this.toggleLogin}/>}
+            </div>       
+        </div>
+        <footer id='sticky-footer'>
+            <div id='landFooter'>
+                <div id='firstPar'>
+                    <h4>The Purpose</h4>
+                    <p>-Top Spots is intended to form users of highly rated restaurants in their area or by search.
+                        The hope is to prevent the debacle of not being able to choose a place to eat. Also, to help
+                        travelers in a new city to find a great place fast!
                     </p>
-                </Col>
-                <Col  id='colThree'>
-                    {this.state.isLogin ? <Login updateToken={this.props.updateToken} toggleLogin={this.toggleLogin}/> : <Signup updateToken={this.props.updateToken} toggleLogin={this.toggleLogin}/>}
-                </Col>       
-            </Row>
-            </Container>
-        
+                </div>
+                <div id='secondPar'>
+                    <h4>How to Use</h4>
+                    <p>-Users are advised to make an account to gain full access to all the features. Once an account is created users are taken to a search screen. Here, a user will enter the name of a city to see the best spots there. If they want more details on a specific restaurant a link is provided also with the ability to save restaurants to try later. The try later list can also be used to help plan out which restaurants to hit while on vacation</p>
+                </div>
+                
+            </div>
+        </footer>
+        </>
     )
 }
 

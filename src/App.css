@@ -1,26 +1,121 @@
 /* ? Landing Page Styling */
 
-.divContainer {
-  background-color: lightslategray;
-}
-
 #navbarStyle {
-  background-color: green;
+  background-color: #09521d;
   color: white;
 }
 
-.authContainer {
-  padding-top: 8%;
-  font-size: 1em;
+#landContainer {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+}
+
+#landHeader {
+  padding-left: 13%;
 }
 
 #headerIntro {
-  font-size: 4em;
+  font-size: 5em;
 }
 
-#colOne {
-  border: 1px solid green;
+#landForm {
+  border: 3px solid green;
+  margin-right: 20%;
+  padding: 4%;
+  color: whitesmoke;
+  background-color: lightslategray;
+  align-items: center;
   text-align: center;
-  padding-top: 30px;
-  margin-right: 50px;
+}
+
+#landFooter {
+  margin-top: 3%;
+  background-color: lightslategray;
+  color: white;
+  font-weight: bold;
+  padding-bottom: 5%;
+  display: flex;
+  flex-direction: row;
+
+  padding-top: 2%;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+#firstPar {
+  margin-right: 4%;
+}
+#secondPar {
+  margin-left: 4%;
+}
+
+#landIntro {
+  padding-top: 5%;
+  font-size: 2em;
+}
+
+/* ? Rest Search */
+
+#searchDiv {
+  padding-top: 3%;
+}
+
+#searchForm {
+  text-align: center;
+  padding-left: 30%;
+  padding-right: 30%;
+}
+
+#searchHeader {
+  padding-left: 3%;
+}
+
+#searchRow {
+  padding-bottom: 5%;
+}
+
+#restCol {
+  background-color: lightslategray;
+  color: whitesmoke;
+  font-weight: bold;
+  border: 2px solid #09521d;
+  border-radius: 2%;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+#restCol:hover {
+  -webkit-box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.35);
+}
+
+/* ? Detail Page */
+
+#detailContainer {
+  padding-top: 3%;
+}
+
+#detailHeader {
+  text-align: center;
+  padding-bottom: 3%;
+}
+
+#detailTextContainer {
+  background-color: lightslategray;
+  padding: 3%;
+  color: whitesmoke;
+  border: 2px solid #09521d;
+  border-radius: 2%;
+  font-weight: bold;
+}
+
+#commentContainer {
+  border: 3px solid lightslategray;
+  padding-left: 2%;
 }
