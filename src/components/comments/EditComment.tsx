@@ -57,7 +57,7 @@ class EditComment extends React.Component<AcceptedProps, EditState>{
     render(){
         return(
             <>
-            <p onClick={this.toggle}>Edit</p>
+            <p id='editLine' onClick={this.toggle}>Edit</p>
             <Modal isOpen={this.state.modal}>
             <ModalBody>
                         <Label htmlFor="notes">Add Notes</Label>

@@ -103,7 +103,15 @@
 
 #detailHeader {
   text-align: center;
-  padding-bottom: 3%;
+  border: 2px solid lightslategray;
+  background-color: #09521d;
+  margin-left: 37%;
+  margin-right: 37%;
+  border-radius: 100px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin-bottom: 3%;
+  color: whitesmoke;
 }
 
 #detailTextContainer {
@@ -115,7 +123,53 @@
   font-weight: bold;
 }
 
+#commentHeader {
+  margin-top: 30px;
+  padding: 10px;
+  background-color: lightslategray;
+  border: 2px solid #09521d;
+  color: #09521d;
+  text-align: center;
+  border-radius: 10px;
+  margin-right: 70%;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+#faPlusButton {
+  color: #09521d;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#btnShowComm {
+  color: #09521d;
+  font-weight: bold;
+  border: 2px solid #09521d;
+  text-align: center;
+  padding-top: 4px;
+  padding-bottom: 0px;
+  text-decoration: underline;
+}
+
 #commentContainer {
-  border: 3px solid lightslategray;
-  padding-left: 2%;
+  margin-top: 20px;
+  padding-left: 15px;
+  background-color: lightslategray;
+  color: white;
+  font-weight: bold;
+  border: 2px solid #09521d;
+  border-radius: 10px;
+}
+
+#hidden {
+  visibility: hidden;
+}
+
+#editLine {
+  text-decoration: underline;
+}
+
+#delComm {
+  text-decoration: underline;
 }

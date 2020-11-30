@@ -1,9 +1,10 @@
 import React, { Props } from 'react';
 import { Container, Row, Col, FormGroup, Form, Label, Input, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusSquare, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare, faStar } from '@fortawesome/free-solid-svg-icons';
 import food from '../assets/food.svg';
 import EditComment from './comments/EditComment'
+import DeleteComment from './comments/DeleteComment'
 import APIURL from '../helpers/environment'
 
 type DetailState = {
@@ -44,7 +45,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
         this.state = {
             show: false,
             comm: '',
-            data: {},
+            data: null,
             id: props.match.params.id,
             rating: '',
             token: localStorage.getItem('token'),
@@ -78,6 +79,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
           const info = await commentFind.json();
           this.setState({comments: info.comments})
           console.log(this.state.comments)
+          console.log(this.state.id)
 
 
     
@@ -140,16 +142,60 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
 
 
     commentMapper(){
-        console.log(this.state.comments)
-        // console.log(this.state.comments[0].comment)
-        if(this.state.comments.length != 0) {
+        
+        
+        if(this.state.comments.length > 0) {
         return this.state.comments.map((info: any) => {
+            let time = info.createdAt;
+            let updateTime = info.updatedAt;
+            
+            
             return(
                 <>
+                <br/>
             <p>Username: {info.username} </p>
             <p>Comment: {info.comment}</p>
-            <p>Star Rating: {info.starRating}</p>
-            <EditComment id={info.id} comment={info.comment} token={localStorage.getItem('token')} locationDetails={this.locationDetails}/>
+            <p>Star Rating: {info.starRating > 4 ? <> <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/> <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/> 
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/> 
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/>
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/></>:
+            info.starRating > 3 ? <>
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/> 
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/> 
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/>
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/> 
+            <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/> </> :
+            info.starRating > 2 ? <>
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/> 
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/> 
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/>
+            <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/>
+            <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/> </> :
+            info.starRating > 1 ? <>
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/> 
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/> 
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'white'}}/>
+            <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/>
+            <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/> </> :
+            info.starRating > 0 ? <>
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'orange'}}/> 
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'white'}}/> 
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'white'}}/>
+            <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/>
+            <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/>
+            </> :
+            // If star rating is 0
+            <>
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'white'}}/> 
+            <FontAwesomeIcon  icon={faStar} size="1x" style={{color: 'white'}}/>
+            <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/>
+            <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/>
+            <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/></>}</p>
+            <p>Posted At: {time}</p>
+            {time == updateTime ? <></> : <p>Updated At: {updateTime}</p>}
+            <p><EditComment id={info.id} comment={info.comment} token={localStorage.getItem('token')} locationDetails={this.locationDetails}/>
+               <DeleteComment token={localStorage.getItem('token')} locationDetails={this.locationDetails} id={info.id} /></p>
+            <br/>
             </>
         )})}
         else {
@@ -166,7 +212,9 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
 
 
     render(){
-        console.log(this.state.data)
+        if(this.state.data == null) {
+            return null
+        }
         return(
             <div id='detailContainer'>
                 <h1 id='detailHeader'>{this.state.data.name}</h1>
@@ -176,18 +224,23 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
                    <img src={food} alt="" height="250px" width="250px"/>
                </Col>
                <Col id='detailTextContainer' sm="6">
-                    <p>Type: {this.state.data.cuisines}</p>
+                    <h4>Type: {this.state.data.cuisines}</h4>
+                    <br/>
+                    <h5>Highlights: {this.state.data.highlights[0]}, {this.state.data.highlights[1]}, {this.state.data.highlights[2]}</h5>
                     <p>Hours: {this.state.data.timings}</p>
                     <p>Phone: {this.state.data.phone_numbers}</p>
-                    <p>Date Night Cost: ${this.state.data.average_cost_for_two}</p>
-                    <p><a href={this.state.data.menu_url}>View Menu</a></p>
-                    <Button onClick={this.sendRest}>Try Later</Button>
+                    <br/>
+                    <p>Cost for Two: ${this.state.data.average_cost_for_two}</p>
+                    <p>Address: {this.state.data.location.address}</p>
+                    <p>Part of City: {this.state.data.location.locality_verbose}</p>
+                    <p><a target='blank' href={this.state.data.menu_url}>View Menu</a></p>
+                    <Button onClick={this.sendRest}>Add to Try Later!</Button>
                </Col>
            </Row>
            <Col>
-           <h3>Comments</h3>
-           <h5>Click + to Add</h5>
-           <Button onClick={this.toggle}><FontAwesomeIcon icon={faPlusSquare} size="3x" /></Button>
+           <h3 id='commentHeader'>Comments <br/> Click + Below to Add</h3>
+           
+           <Button onClick={this.toggle}><FontAwesomeIcon id='faPlusButton' icon={faPlusSquare} size="3x" /></Button>
            {this.state.show ? <Form>
                     <FormGroup>
                         <Label htmlFor="name">Add a Comment!</Label>
@@ -195,17 +248,17 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
                         
                         <br/>
                         <Label htmlFor="rating">Leave a Star Rating 0-5</Label>
-                        <Input type="number" max="5" min="0" onChange={(e) => this.setState({rating: e.target.value})}></Input>
+                        <Input placeholder='0-5' type="number" max="5" min="0" onChange={(e) => this.setState({rating: e.target.value})}></Input>
                         <br/>
                         <Button onClick={this.submitComm}>Submit Comment!</Button>
                     </FormGroup>
                 </Form> : <div></div>}
                 </Col>
                 <br/>
-                <Button onClick={this.toggleTwo}>
-                    {this.state.showComm ? <p>Hide Comments</p> : <p>Show Comments</p>}</Button>
+                <Button id='btnShowComm' onClick={this.toggleTwo}>
+                    {this.state.showComm ? <p>Click to Hide Comments</p> : <p>Click to Show Comments</p>}</Button>
                 <div id='commentContainer'>
-                {this.state.showComm ? <div>{this.commentMapper()}</div>: <></>}
+                {this.state.showComm ? <div>{this.commentMapper()}</div>: <div id='hidden'></div>}
                 </div>
                 </Container>
                 

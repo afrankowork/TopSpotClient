@@ -110,13 +110,13 @@ class RestSearch extends React.Component<MyProp, SearchState>{
             <div id='searchDiv'>
                 <Form id='searchForm' onSubmit={this.locationSearch}>
                 <FormGroup>
-                    <h4>City Search</h4>
+                    <h4>Search Any City in The USA</h4>
                     <Input placeholder='eg: New York, Chicago, Indianapolis'id='searchInput' onChange={(e) => this.setState({city: e.target.value})} name='city' value={this.state.city} />
                 </FormGroup>
                 <Button type='submit'>Search</Button>
             </Form>
             <br/>
-            <h3 id='searchHeader'>Best Rated Restaurants in Your City:</h3>
+            
             <br/>
             <Container id='searchContainer'>
                 {this.topMapper()}
