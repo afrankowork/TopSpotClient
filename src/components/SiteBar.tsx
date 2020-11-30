@@ -20,6 +20,7 @@ import Auth from '../auth/Auth';
 import RestSearch from'./RestSearch';
 import RestDetail from './RestDetail';
 import ToTryList from './ToTryList';
+import NameSearch from './NameSearch';
 import '../App.css';
 
 
@@ -65,7 +66,8 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="mr-auto" navbar>
-                <NavLink href="/restsearch">Top Rated Spots</NavLink>
+                <NavLink href="/restsearch">Top Rated Spots!</NavLink>
+                <NavLink href="/namesearch">Search By Name!</NavLink>
                 <NavLink href="/totrylist">Try Later!</NavLink>
             </Nav>
             {localStorage.getItem('token') ?
@@ -84,8 +86,12 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
             {/* Route for more details page to display comments */}
             <Route exact path='/restsearch/:id' component={RestDetail}/>
 
-            <Route exactpath='/totrylist'>
+            <Route exact path='/totrylist'>
                 <ToTryList token={localStorage.getItem('token')}/>
+            </Route>
+
+            <Route exact path='/namesearch'>
+                <NameSearch />
             </Route>
 
             

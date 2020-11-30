@@ -64,17 +64,31 @@ class ToTryList extends React.Component<AcceptedProps, ListState>{
     listMapper() {
         
         
-        return this.state.data.map((rest: any) => {
-            
-            return(<div>
+        return this.state.data.map((rest: any, index: number) => {
+            let restName = rest.restName;
+            restName = restName.replace(/\s+/g,'-').toLowerCase();
+            let restLink = `https://www.opentable.com/`
+            console.log(restName);
+            return(<div id='listIndv'>
                 <br/>
-                <h1>Name: {rest.restName}</h1>
-                <p>Address: {rest.address}</p>
-                <p>Visited: {rest.visited}</p>
-                <p>Notes: {rest.notes}</p>
-                <UpdateItem restID={rest.id} token={this.state.token} listDetails={this.listDetails}/> 
+                <h1>{index+1}. {rest.restName}</h1>
+                <br/>
+                <p className='boldText'>Address: {rest.address}</p>
+                <br/>
+                <p className='boldText'>Phone: {rest.phone}</p>
+                <br/>
+                <p className='boldText'>Hours: {rest.hours}</p>
+                <br/>
+                <a target="blank" href={restLink}>Book a Reservation</a>
+                <br/>
+                <br/>
+                <p className='boldText'>Notes: {rest.notes}</p>
+                <br/>
+                <div id='buttonFlex'>
+                <UpdateItem restID={rest.id} token={this.state.token} listDetails={this.listDetails}/>
+                      
                 <DeleteItem restID={rest.id} token={this.state.token} listDetails={this.listDetails} />
-                
+                </div>
                 
             </div>)
         })
@@ -94,7 +108,8 @@ class ToTryList extends React.Component<AcceptedProps, ListState>{
         }
         else {
         return(
-            <div>
+            <div id='tryLaterContainer'>
+                <h2 id='headerList'>Try Later List</h2>
                 {this.listMapper()}
             </div>
         ) }}

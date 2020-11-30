@@ -28,7 +28,7 @@ class DeleteItem extends React.Component<AcceptedProps>{
     render(){
         return(
             <div>
-                <Button onClick={this.deleteItem}>Delete</Button>
+                <Button id='btnDelete' onClick={this.deleteItem}>Delete</Button>
             </div>
         )
     }

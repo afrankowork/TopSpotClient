@@ -76,16 +76,16 @@ class Login extends React.Component<AcceptedProps, UserState>{
             <Form onSubmit={this.handleSubmit}>
                 <FormGroup>
                     <Label htmlFor="email">Email: </Label>
-                    <Input placeholder='email' onChange={(e) => this.setState({email: e.target.value})} name='email' value={this.state.email} />
+                    <Input placeholder='Email' onChange={(e) => this.setState({email: e.target.value})} name='email' value={this.state.email} />
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="password">Password: </Label>
-                    <Input placeholder='password' onChange={(e) => this.setState({password: e.target.value})} name='password' value={this.state.password} type='password'/>
+                    <Input placeholder='Password' onChange={(e) => this.setState({password: e.target.value})} name='password' value={this.state.password} type='password'/>
                 </FormGroup>
                 <Button type='submit'>Login</Button>
             </Form>
             <br/>
-            <Button onClick={() => this.props.toggleLogin()}>Already Signed Up? Click Here!</Button>
+            <Button onClick={() => this.props.toggleLogin()}>Need to Sign Up? Click Here!</Button>
             {this.state.isError ? <p>Email or Password is incorrect. Try Again.</p> : <></>}
         </div>
         )

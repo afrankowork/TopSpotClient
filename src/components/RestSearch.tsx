@@ -3,6 +3,8 @@ import React from 'react';
 import {Form, FormGroup, Label, Input, Button, Container, Col, Row, Modal} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import placeHolder from '../assets/placeHolder.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 type SearchState = {
     city: string;
@@ -107,13 +109,16 @@ class RestSearch extends React.Component<MyProp, SearchState>{
 
     render(){
         return(
-            <div id='searchDiv'>
-                <Form id='searchForm' onSubmit={this.locationSearch}>
+            <div className='searchDiv'>
+                <Form className='searchForm' onSubmit={this.locationSearch}>
                 <FormGroup>
-                    <h4>Search Any City in The USA</h4>
+                    <h4 className='formSearchHeader'>Enter a City</h4>
+                    <div className='searchFormContainer'>
                     <Input placeholder='eg: New York, Chicago, Indianapolis'id='searchInput' onChange={(e) => this.setState({city: e.target.value})} name='city' value={this.state.city} />
+                    <Button type='submit'><FontAwesomeIcon  icon={faSearch} size="1x" style={{color: '#09521d', }}/> </Button>
+                    </div>
                 </FormGroup>
-                <Button type='submit'>Search</Button>
+                
             </Form>
             <br/>
             

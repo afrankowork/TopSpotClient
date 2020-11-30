@@ -5,6 +5,7 @@ import APIURL from '../../helpers/environment';
 type EditState = {
     modal: boolean
     comment: string
+    starRating: string
 } 
 
 
@@ -23,7 +24,8 @@ class EditComment extends React.Component<AcceptedProps, EditState>{
         this.updateComment = this.updateComment.bind(this);
         this.state = {
             modal: false,
-            comment: ''
+            comment: '',
+            starRating: ''
         }
     }
 
@@ -40,7 +42,7 @@ class EditComment extends React.Component<AcceptedProps, EditState>{
         'Authorization' : tokenInfo}
         const restFind = await fetch(
             `${APIURL}/comment`,
-            { method: 'PUT', headers:  requestHeaders, body: JSON.stringify({comment: this.state.comment, id: this.props.id})}
+            { method: 'PUT', headers:  requestHeaders, body: JSON.stringify({comment: this.state.comment, id: this.props.id, starRating: this.state.starRating})}
           );
             
           const data = await restFind.json();
@@ -57,11 +59,14 @@ class EditComment extends React.Component<AcceptedProps, EditState>{
     render(){
         return(
             <>
-            <p id='editLine' onClick={this.toggle}>Edit</p>
+            <Button id='editLine' onClick={this.toggle}>Edit</Button>
             <Modal isOpen={this.state.modal}>
             <ModalBody>
-                        <Label htmlFor="notes">Add Notes</Label>
-                        <Input onChange={(e) => this.setState({comment: e.target.value})} name="notes" value={this.state.comment}></Input>
+                        <Label htmlFor="notes">Add/Update Notes</Label>
+                        <Input placeholder="Notes" onChange={(e) => this.setState({comment: e.target.value})} name="notes" value={this.state.comment}></Input>
+                        <br/>
+                        <Label htmlFor="notes">Add/Update Star Rating</Label>
+                        <Input  placeholder="0-5" type="number" min="0" max="5" onChange={(e) => this.setState({starRating: e.target.value})} value={this.state.starRating}></Input>
                         
                     </ModalBody>
                     <ModalFooter>

@@ -114,6 +114,8 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
             console.log(data)
         })
         this.locationDetails();
+        this.toggle();
+        this.toggleTwo();
     }
 
     sendRest(){
@@ -123,7 +125,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
 
         fetch(`${APIURL}/rest`, {
             method: 'POST',
-            body: JSON.stringify({restName: this.state.data.name, address: this.state.data.location.address, visited: false}),
+            body: JSON.stringify({restName: this.state.data.name, address: this.state.data.location.address, phone: this.state.data.phone_numbers, hours: this.state.data.timings}),
             headers: requestHeaders1
         }).then((response) => response.json()).
         then((data) => {
@@ -135,7 +137,8 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
     submitComm(){
         
         localStorage.getItem('token') ? 
-            this.addComm()  
+            this.addComm()
+             
         : alert('Please Signin to Leave a Comment')
     }
 
@@ -146,8 +149,20 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
         
         if(this.state.comments.length > 0) {
         return this.state.comments.map((info: any) => {
+            
+            // setting the time format for Posted
             let time = info.createdAt;
+            let usDate = new Date(time);
+            let readDate = usDate.toLocaleString("en-US");
+            
+            // setting the time format for Updated
             let updateTime = info.updatedAt;
+            let usUpdate = new Date(updateTime);
+            let updateDate = usUpdate.toLocaleString("en-US")
+            
+
+            console.log(readDate);
+            console.log(updateTime);
             
             
             return(
@@ -191,10 +206,10 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
             <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/>
             <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/>
             <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/></>}</p>
-            <p>Posted At: {time}</p>
-            {time == updateTime ? <></> : <p>Updated At: {updateTime}</p>}
-            <p><EditComment id={info.id} comment={info.comment} token={localStorage.getItem('token')} locationDetails={this.locationDetails}/>
-               <DeleteComment token={localStorage.getItem('token')} locationDetails={this.locationDetails} id={info.id} /></p>
+            <p>Posted on: {readDate}</p>
+            {time == updateTime ? <></> : <p>Updated At: {updateDate}</p>}
+            <EditComment id={info.id} comment={info.comment} token={localStorage.getItem('token')} locationDetails={this.locationDetails}/>
+               <DeleteComment token={localStorage.getItem('token')} locationDetails={this.locationDetails} id={info.id} />
             <br/>
             </>
         )})}
@@ -242,7 +257,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
            
            <Button onClick={this.toggle}><FontAwesomeIcon id='faPlusButton' icon={faPlusSquare} size="3x" /></Button>
            {this.state.show ? <Form>
-                    <FormGroup>
+                    <FormGroup id='addCommForm'>
                         <Label htmlFor="name">Add a Comment!</Label>
                         <Input placeholder='eg: Food was Amazing, Our Server was fantastic'onChange={(e) => this.setState({comm: e.target.value})} id="name" value={this.state.comm}/>
                         
@@ -250,7 +265,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
                         <Label htmlFor="rating">Leave a Star Rating 0-5</Label>
                         <Input placeholder='0-5' type="number" max="5" min="0" onChange={(e) => this.setState({rating: e.target.value})}></Input>
                         <br/>
-                        <Button onClick={this.submitComm}>Submit Comment!</Button>
+                        <Button onClick={this.submitComm} >Submit Comment!</Button>
                     </FormGroup>
                 </Form> : <div></div>}
                 </Col>

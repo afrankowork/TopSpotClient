@@ -58,12 +58,12 @@ class UpdateItem extends React.Component<AcceptedProps, UpdateState>{
     render(){
         return(
             <>
-            <Button onClick={this.toggle}>Update</Button>
+            <Button id='addNotes' onClick={this.toggle}>Add Notes</Button>
             <Modal isOpen={this.state.modal}>
                     <ModalHeader>Update Info</ModalHeader>
                     <ModalBody>
-                        <Label htmlFor="notes">Add Notes</Label>
-                        <Input onChange={(e) => this.setState({notes: e.target.value})} name="notes" value={this.state.notes}></Input>
+                        <Label htmlFor="notes">Add or Update Notes</Label>
+                        <Input placeholder="eg: Try the Shrimp/Lobster, Remember the Steak is the go to" onChange={(e) => this.setState({notes: e.target.value})} name="notes" value={this.state.notes}></Input>
                         
                     </ModalBody>
                     <ModalFooter>

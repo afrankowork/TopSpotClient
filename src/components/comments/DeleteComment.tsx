@@ -1,5 +1,6 @@
 import React from 'react';
 import APIURL from '../../helpers/environment';
+import {Button} from 'reactstrap';
 
 type AcceptedProps = {
     id: string,
@@ -30,7 +31,7 @@ class DeleteComment extends React.Component<AcceptedProps>{
 
     render(){
         return(
-            <div><p id='delComm' onClick={this.deleteComment}>Delete</p></div>
+            <><Button id='delComm' onClick={this.deleteComment}>Delete</Button></>
             )
     }
 
