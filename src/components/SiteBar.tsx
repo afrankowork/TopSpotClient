@@ -21,6 +21,7 @@ import RestSearch from'./RestSearch';
 import RestDetail from './RestDetail';
 import ToTryList from './ToTryList';
 import NameSearch from './NameSearch';
+import Admin from './Admin';
 import '../App.css';
 
 
@@ -62,17 +63,18 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
             <div>
                 <Router>
             <Navbar id="navbarStyle" expand="md">
-            <NavbarBrand href="/">Home</NavbarBrand>
+            <NavbarBrand className="siteItems" href="/">Home</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="mr-auto" navbar>
-                <NavLink href="/restsearch">Top Rated Spots!</NavLink>
-                <NavLink href="/namesearch">Search By Name!</NavLink>
-                <NavLink href="/totrylist">Try Later!</NavLink>
+                <NavLink className='siteItems' href="/restsearch">Top Rated Spots!</NavLink>
+                <NavLink className='siteItems' href="/namesearch">Search By Name!</NavLink>
+                <NavLink className='siteItems' href="/totrylist">Try Later!</NavLink>
+                
             </Nav>
             {localStorage.getItem('token') ?
-            <NavbarText>
-                <a href="/" onClick={this.delete}>Logout</a>
+            <NavbarText className="siteItems">
+                <a className="siteItems" href="/" onClick={this.delete}>Logout</a>
             </NavbarText> : <> </>} 
         </Collapse>
       </Navbar>
@@ -92,6 +94,10 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
 
             <Route exact path='/namesearch'>
                 <NameSearch />
+            </Route>
+
+            <Route exact path='/adminonly'>
+                <Admin />
             </Route>
 
             

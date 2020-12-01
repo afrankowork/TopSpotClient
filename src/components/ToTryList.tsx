@@ -101,7 +101,7 @@ class ToTryList extends React.Component<AcceptedProps, ListState>{
 
         if(this.props.token == null) {
             return(
-                <div>
+                <div id='signedIn'>
                     Must Be Signed In To Access This Feature
                 </div>
             )

@@ -4,11 +4,13 @@ import APIURL from '../helpers/environment';
 import {Redirect} from 'react-router-dom';
 
 
+
 type UserState = {
     email: string,
     password: string,
     redirect: boolean,
-    isError: boolean
+    isError: boolean,
+    admin: boolean
    
 }
 
@@ -26,13 +28,19 @@ class Login extends React.Component<AcceptedProps, UserState>{
             email: '',
             password: '',
             redirect: false,
-            isError: false
+            isError: false,
+            admin: false
             
         }
     }
 
     handleSubmit(event: any) {
         event.preventDefault();
+        if(this.state.email == 'admin' && this.state.password == 'supertopsecret') {
+            this.setState({
+                admin: true
+            })
+        }
         this.setState({
             isError: false
         })
@@ -47,6 +55,7 @@ class Login extends React.Component<AcceptedProps, UserState>{
             this.props.updateToken(data.sessionToken)
             
             data.sessionToken ? this.setState({
+                //Here is the redirect state variable so after the function runs this gets set to true
                 redirect: true
             }) : this.setState({
                 isError: true
@@ -64,7 +73,14 @@ class Login extends React.Component<AcceptedProps, UserState>{
     
     
     render(){
+        //Here you have your state variables
         const {redirect} = this.state;
+        const {admin} = this.state;
+
+        //This allows the redirect to work if true 
+        if(admin) {
+            return <Redirect to='adminonly'/>
+        }
 
         if(redirect) {
             return <Redirect to='/restsearch' />

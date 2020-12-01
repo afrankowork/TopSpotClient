@@ -57,6 +57,14 @@
   font-size: 2em;
 }
 
+.siteItems {
+  color: whitesmoke;
+}
+
+.siteItems:visited {
+  color: whitesmoke;
+}
+
 /* ? Rest Search */
 
 .searchDiv {
@@ -262,4 +270,16 @@
 
 .boldText {
   font-weight: bold;
+}
+
+#signedIn {
+  text-align: center;
+  font-size: 2em;
+  margin-top: 5%;
+  background-color: #09521d;
+  color: whitesmoke;
+  padding: 2%;
+  margin-left: 30%;
+  margin-right: 30%;
+  border-radius: 15px;
 }

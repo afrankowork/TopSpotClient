@@ -146,8 +146,10 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
 
     commentMapper(){
         
-        
-        if(this.state.comments.length > 0) {
+        if(this.state.comments == undefined) {
+            return <div>Must Be Signed In Too See Comments </div>
+        }
+        else if(this.state.comments.length > 0) {
         return this.state.comments.map((info: any) => {
             
             // setting the time format for Posted
