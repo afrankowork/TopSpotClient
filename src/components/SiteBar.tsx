@@ -22,6 +22,7 @@ import RestDetail from './RestDetail';
 import ToTryList from './ToTryList';
 import NameSearch from './NameSearch';
 import Admin from './Admin';
+import LiveChat from './Chat';
 import '../App.css';
 
 
@@ -70,6 +71,8 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
                 <NavLink className='siteItems' href="/restsearch">Top Rated Spots!</NavLink>
                 <NavLink className='siteItems' href="/namesearch">Search By Name!</NavLink>
                 <NavLink className='siteItems' href="/totrylist">Try Later!</NavLink>
+                <NavLink className='siteItems' href="/livechat">Live Chat</NavLink>
+                
                 
             </Nav>
             {localStorage.getItem('token') ?
@@ -99,6 +102,12 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
             <Route exact path='/adminonly'>
                 <Admin />
             </Route>
+
+            <Route exact path='/livechat'>
+                <LiveChat />
+            </Route>
+
+           
 
             
                 
