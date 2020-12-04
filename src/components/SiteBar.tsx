@@ -23,6 +23,7 @@ import ToTryList from './ToTryList';
 import NameSearch from './NameSearch';
 import Admin from './Admin';
 import LiveChat from './Chat';
+import ChatLand from './HomeChat';
 import '../App.css';
 
 
@@ -68,10 +69,10 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="mr-auto" navbar>
-                <NavLink className='siteItems' href="/restsearch">Top Rated Spots!</NavLink>
-                <NavLink className='siteItems' href="/namesearch">Search By Name!</NavLink>
+                <NavLink className='siteItems' href="/restsearch">Top Rated Search</NavLink>
+                <NavLink className='siteItems' href="/namesearch">Search By Name</NavLink>
                 <NavLink className='siteItems' href="/totrylist">Try Later!</NavLink>
-                <NavLink className='siteItems' href="/livechat">Live Chat</NavLink>
+                <NavLink className='siteItems' href="/chatlanding">Live Chat</NavLink>
                 
                 
             </Nav>
@@ -103,8 +104,12 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
                 <Admin />
             </Route>
 
-            <Route exact path='/livechat'>
+            <Route exact path='/chatlanding/:city'>
                 <LiveChat />
+            </Route>
+
+            <Route exact path='/chatlanding'>
+                <ChatLand />
             </Route>
 
            

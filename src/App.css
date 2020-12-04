@@ -1,3 +1,8 @@
+.App {
+  background-color: darkslategray;
+  height: 100vh;
+}
+
 /* ? Landing Page Styling */
 
 #navbarStyle {
@@ -8,7 +13,7 @@
 #landContainer {
   display: flex;
   flex-direction: row;
-
+  background-color: darkslategray;
   justify-content: center;
   align-items: center;
 }
@@ -67,8 +72,13 @@
 
 /* ? Rest Search */
 
+#searchContainer {
+  background-color: darkslategray;
+}
+
 .searchDiv {
   padding-top: 3%;
+  background-color: darkslategray;
 }
 
 .searchForm {
@@ -282,4 +292,120 @@
   margin-left: 30%;
   margin-right: 30%;
   border-radius: 15px;
+}
+
+/*? Chat Landing Page*/
+#chatLand {
+  display: flex;
+  flex-direction: column;
+  background-color: darkslategray;
+  height: 100vh;
+}
+
+#chatLandHeader {
+  background-color: #09521d;
+  color: whitesmoke;
+  margin-top: 50px;
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin-left: 35%;
+  margin-right: 35%;
+  border-radius: 10px;
+  margin-bottom: 3%;
+  border: 2px solid whitesmoke;
+}
+
+.cityLand {
+  text-align: center;
+  border: 2px solid lightslategray;
+  background-color: #09521d;
+  margin-left: 37%;
+  margin-right: 37%;
+  border-radius: 100px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin-bottom: 3%;
+  color: whitesmoke;
+  border: 2px solid whitesmoke;
+}
+
+.cityLink {
+  background-color: gray;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: whitesmoke;
+  border-radius: 100px;
+}
+
+/*? Chat Room */
+
+#chatRoomContainer {
+  padding-top: 30px;
+  padding-bottom: 50px;
+  background-size: 100%;
+  background-color: darkslategray;
+}
+
+#chatRoomHeader {
+  background-color: #09521d;
+  color: whitesmoke;
+
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin-left: 35%;
+  margin-right: 35%;
+  border-radius: 10px;
+  margin-bottom: 3%;
+  border: 2px solid whitesmoke;
+}
+
+#messagesContainer {
+  background-color: darkgray;
+  margin-left: 15%;
+  margin-right: 15%;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 20px;
+  padding-bottom: 50px;
+}
+
+.mess-sent {
+  color: white;
+  text-align: right;
+}
+.mess-received {
+  color: white;
+}
+
+.label-sent {
+  margin-bottom: 5px;
+  padding-bottom: 100px;
+}
+
+.text-sent {
+  display: inline-block;
+  background-color: #09521d;
+  padding: 7.5px;
+  border-radius: 14px;
+  color: white;
+  margin-top: 0.5%;
+}
+
+.text-received {
+  display: inline-block;
+  background-color: darkslategray;
+  padding: 7.5px;
+  border-radius: 14px;
+  color: white;
+  margin-top: 0.5%;
+}
+
+#chatInput {
+  height: 40px;
+  border-radius: 10px;
+  border: darkgray;
 }

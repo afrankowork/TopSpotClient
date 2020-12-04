@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import APIURL from '../helpers/environment';
-import {Form, Button} from 'reactstrap';
-
+import {Form, Button, Label, Input} from 'reactstrap';
+import Chip from '@material-ui/core/Chip'
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-
+import {useParams} from 'react-router-dom';  
 import 'firebase/analytics';
 
 
@@ -27,31 +27,54 @@ const token = localStorage.getItem('token');
 let userID = '';
 let userName = '';
 
+let currentUser = '';
+let currentMember;
+
+
 
 function LiveChat() {
+    const {city} = useParams();
+    
+    let requestHeaders = {'Content-Type':'application/json',
+        'Authorization' : token}
+        
+        fetch(
+            `${APIURL}/rest/getone`,
+            {method: 'GET',
+            headers: requestHeaders }
+          ).then((response) => {
+              return response.json();
+            }).then((json) => {
+                
+                currentUser = json.info[0].username;
+                console.log(currentUser)
+            })
 
 
     return (
-        <>
-        <div>
-            <h1>Top Spots Live Chat</h1>
-        </div>
+       <div id='chatRoomContainer'>
 
-        <div>
+        <h1 id='chatRoomHeader'>{city} Chat</h1>
+        <div id='messagesContainer'>
             {token ? <ChatRoom /> : <div>No Cigar</div>}
+            </div>
         </div>
-        </>
+        
     )
 }
 
-function ChatRoom() {
-    const messagesRef = firestore.collection('messages');
-    const query = messagesRef.orderBy('createdAt').limit(30);
-
-    const [messages] = useCollectionData(query, {idField: 'id'});
-
-    const [newMessage, setNewMessage] = useState('');
+function ChatRoom(props) {
+    const {city} = useParams();
+    const scroll = useRef();
     
+    
+    
+    const messagesRef = firestore.collection(`${city}`);
+    const query = messagesRef.orderBy('createdAt').limit(25);
+    const [messages] = useCollectionData(query, {idField: 'id'});
+    const [newMessage, setNewMessage] = useState(' ');
+    
+
     const sendMessage = async (e) => {
         e.preventDefault();
         
@@ -82,17 +105,19 @@ function ChatRoom() {
         })
 
         setNewMessage('');
+        scroll.current.scrollIntoView({behavior: 'smooth'})
 
-
+        
     }
     return(
         <>
         <div>
-            {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+            {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} currentUser={currentUser}  />)}
+            <span ref={scroll}></span>
         </div>
 
         <Form onSubmit={sendMessage}>
-            <input value={newMessage} onChange={(e) => setNewMessage(e.target.value)} type="text"/>
+            <Input id='chatInput' value={newMessage} onChange={(e) => setNewMessage(e.target.value)} type="text"/>
       
 
         <Button type='submit'>
@@ -106,14 +131,23 @@ function ChatRoom() {
 }
 
 function ChatMessage(props) {
+    
+    
+    
     const {text, userID, userName} = props.message;
-
+    let messageType = userName == props.currentUser ? 'sent' : 'received';
+    
     return (
-        <>
-        <div>
-        <p>{userName}: {text}</p>
+       
+        <div className={`mess-${messageType}`} >
+        <span className={`label-${messageType}`}>{userName}</span><br/>
+        <span className={`text-${messageType}`}>
+          {text}
+        </span>
+        <br/>
+        <br/>
         </div>
-        </>
+        
     )
 
 }
