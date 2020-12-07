@@ -254,7 +254,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
                     <Button onClick={this.sendRest}>Add to Try Later!</Button>
                </Col>
            </Row>
-           <Col>
+           <div>  
            <h3 id='commentHeader'>Comments <br/> Click + Below to Add</h3>
            
            <Button onClick={this.toggle}><FontAwesomeIcon id='faPlusButton' icon={faPlusSquare} size="3x" /></Button>
@@ -270,12 +270,13 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
                         <Button onClick={this.submitComm} >Submit Comment!</Button>
                     </FormGroup>
                 </Form> : <div></div>}
-                </Col>
+                
                 <br/>
                 <Button id='btnShowComm' onClick={this.toggleTwo}>
                     {this.state.showComm ? <p>Click to Hide Comments</p> : <p>Click to Show Comments</p>}</Button>
                 <div id='commentContainer'>
                 {this.state.showComm ? <div>{this.commentMapper()}</div>: <div id='hidden'></div>}
+                </div>
                 </div>
                 </Container>
                 

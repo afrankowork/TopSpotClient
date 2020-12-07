@@ -36,7 +36,7 @@ class Login extends React.Component<AcceptedProps, UserState>{
 
     handleSubmit(event: any) {
         event.preventDefault();
-        if(this.state.email == 'admin' && this.state.password == 'supertopsecret') {
+        if(this.state.email == 'admin' && this.state.password == 'admin!12341234!') {
             this.setState({
                 admin: true
             })

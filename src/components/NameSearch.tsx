@@ -76,7 +76,7 @@ class NameSearch extends React.Component<AcceptedProps, NameState>{
                 <Row id='searchRow'>
                        <Col xs="6">
                  <img height='250px' width='250px' src={placeHolder} alt=""/>
-                 <p>Your Image Here!</p>
+                 <p style={{color: "white"}}>Your Image Here!</p>
                  </Col>
                  <Col xs="6" id='restCol'>
                  <h4>{index + 1}. {rest.name}</h4>
@@ -104,7 +104,7 @@ class NameSearch extends React.Component<AcceptedProps, NameState>{
             <div className='searchDiv'>
                 <Form className='searchForm' onSubmit={this.searchByName}>
                 <FormGroup>
-                    <h4 className='formSearchHeader'>Enter a Name and a City</h4>
+                    <h4 className='formSearchHeader'>Enter a Restaurant Name and a City</h4>
                     <div className='searchFormContainer'>
                     <Input placeholder='City Name' id='cityInput' onChange={(e) => this.setState({city: e.target.value})} name='city' value={this.state.city} required/>
                     <Input placeholder='Restaurant Name' onChange={(e) => this.setState({restname: e.target.value})} name='restName'

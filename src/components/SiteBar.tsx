@@ -71,7 +71,7 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
                 <Nav className="mr-auto" navbar>
                 <NavLink className='siteItems' href="/restsearch">Top Rated Search</NavLink>
                 <NavLink className='siteItems' href="/namesearch">Search By Name</NavLink>
-                <NavLink className='siteItems' href="/totrylist">Try Later!</NavLink>
+                <NavLink className='siteItems' href="/totrylist">Try/Save for Later!</NavLink>
                 <NavLink className='siteItems' href="/chatlanding">Live Chat</NavLink>
                 
                 

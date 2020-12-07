@@ -141,6 +141,7 @@
 
 #detailContainer {
   padding-top: 3%;
+  background-color: darkslategray;
 }
 
 #detailHeader {
@@ -163,6 +164,10 @@
   border: 2px solid #09521d;
   border-radius: 2%;
   font-weight: bold;
+}
+
+#commentCol {
+  background-color: darkslategray;
 }
 
 #commentHeader {
@@ -200,7 +205,7 @@
   background-color: lightslategray;
   color: white;
   font-weight: bold;
-  border: 2px solid #09521d;
+  border: 2px solid darkslategray;
   border-radius: 10px;
 }
 
@@ -408,4 +413,16 @@
   height: 40px;
   border-radius: 10px;
   border: darkgray;
+}
+
+/*?  Admin   */
+
+#adminTable {
+  color: whitesmoke;
+  text-align: center;
+}
+#adminHeader {
+  color: whitesmoke;
+  text-align: center;
+  margin-bottom: 10px;
 }

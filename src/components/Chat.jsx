@@ -45,9 +45,10 @@ function LiveChat() {
           ).then((response) => {
               return response.json();
             }).then((json) => {
+                if(token) {
+                currentUser = json.info[0].username
+                console.log(currentUser)}
                 
-                currentUser = json.info[0].username;
-                console.log(currentUser)
             })
 
 
@@ -56,11 +57,12 @@ function LiveChat() {
 
         <h1 id='chatRoomHeader'>{city} Chat</h1>
         <div id='messagesContainer'>
-            {token ? <ChatRoom /> : <div>No Cigar</div>}
+            {token ? <ChatRoom /> : <div style={{color: "white", textAlign: "center", fontWeight: "bold", fontSize:"2.5em"}}>Need to Sign in to Chat!</div>}
             </div>
         </div>
         
     )
+    
 }
 
 function ChatRoom(props) {

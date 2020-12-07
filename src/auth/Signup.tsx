@@ -67,7 +67,7 @@ class Signup extends React.Component<AcceptedProps, UserState> {
             <Form onSubmit={this.handleSubmit}>
                 <FormGroup>
                     <Label htmlFor="email">Email</Label>
-                    <Input placeholder="Email"onChange={(e) => this.setState({email: e.target.value})} name='email' value={this.state.email} />
+                    <Input placeholder="email@email.com"onChange={(e) => this.setState({email: e.target.value})} name='email' value={this.state.email} />
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="username">Username</Label>

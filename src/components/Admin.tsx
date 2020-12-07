@@ -1,7 +1,8 @@
 import React from 'react';
 import APIURL from '../helpers/environment';
 import {Table,Button} from 'reactstrap';
-
+import DeleteUser from './adminOptions/DeleteUser';
+import CreateUser from './adminOptions/CreateUser';
 
 type AdminState = {
     users: Array<any>
@@ -16,6 +17,7 @@ type AcceptedProps = {
 class Admin extends React.Component<AcceptedProps, AdminState>{
     constructor(props: AcceptedProps){
         super(props)
+        this.getUsers = this.getUsers.bind(this)
         this.state = {
             users: [],
             comments: []
@@ -24,6 +26,7 @@ class Admin extends React.Component<AcceptedProps, AdminState>{
 
 
     async getUsers(){
+        this.setState({users: []})
         let requestHeaders: any = {'Content-Type':'application/json'}
         const userFind = await fetch(
             `${APIURL}/user/getusers/`,
@@ -45,12 +48,15 @@ class Admin extends React.Component<AcceptedProps, AdminState>{
                   <td>{user.id}</td>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
-                  <td><Button color="warning">Edit</Button></td>
-                  <td><Button color="danger">Delete</Button></td>
+                  <td>
+                  <DeleteUser id={user.id} getUsers={this.getUsers}/>
+                  </td>
               </tr>
           )
       })
     }
+
+   
 
     componentDidMount() {
         this.getUsers()
@@ -63,14 +69,14 @@ class Admin extends React.Component<AcceptedProps, AdminState>{
             <div>
                  <br/>
                 <br/>
-                <h3>List of All Users</h3>
-                <Table>
+                <h3 id='adminHeader'>List of All Users</h3>
+                <CreateUser getUsers={this.getUsers}/>
+                <Table id='adminTable'>
                     <thead>
                         <tr>
                             <th>User ID</th>
                             <th>Username</th>
                             <th>User Email</th>
-                            <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                     </thead>

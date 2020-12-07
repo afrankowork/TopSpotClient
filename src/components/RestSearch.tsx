@@ -77,12 +77,14 @@ class RestSearch extends React.Component<MyProp, SearchState>{
 
         topMapper(){
             console.log(this.state.bestRest);
+            
+            
             return this.state.bestRest.map((rest: any, index: number) => {
                 return(
                     <Row id='searchRow'>
                            <Col xs="6">
                      <img height='250px' width='250px' src={placeHolder} alt=""/>
-                     <p>Your Image Here!</p>
+                     <p style={{color: "white"}}>Your Image Here!</p>
                      </Col>
                      <Col xs="6" id='restCol'>
                      <h4>{index + 1}. {rest.name}</h4>
