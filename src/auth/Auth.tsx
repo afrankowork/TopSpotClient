@@ -52,12 +52,12 @@ render(){
                     <h4>The Purpose</h4>
                     <p>-Top Spots is intended to form users of highly rated restaurants in their area or by search.
                         The hope is to prevent the debacle of not being able to choose a place to eat. Also, to help
-                        travelers in a new city to find a great place fast!
+                        travelers in a new location find a great spot!
                     </p>
                 </div>
                 <div id='secondPar'>
                     <h4>How to Use</h4>
-                    <p>-Users are advised to make an account to gain full access to all the features. Once an account is created users are taken to a search screen. Here, a user will enter the name of a city to see the best spots there. If they want more details on a specific restaurant a link is provided also with the ability to save restaurants to try later. The try later list can also be used to help plan out which restaurants to hit while on vacation</p>
+                    <p>-Users are advised to make an account to gain full access to all the features. Once an account is created users are taken to a search screen. Here, a user will enter the name of a city to see the best spots there. If they want more details on a specific restaurant a link is provided also with the ability to save restaurants to try later, where notes can be added</p>
                 </div>
                 
             </div>

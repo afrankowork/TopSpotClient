@@ -1,8 +1,9 @@
+
 import React from 'react';
 import{Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import APIURL from '../helpers/environment';
 import {Redirect} from 'react-router-dom';
-
+require('dotenv').config();
 
 
 type UserState = {

@@ -13,7 +13,8 @@ type AcceptedProps = {
     id: string,
     comment: string,
     token: string | null,
-    locationDetails: Function
+    locationDetails: Function,
+    star: number
 }
 
 class EditComment extends React.Component<AcceptedProps, EditState>{
@@ -63,10 +64,10 @@ class EditComment extends React.Component<AcceptedProps, EditState>{
             <Modal isOpen={this.state.modal}>
             <ModalBody>
                         <Label htmlFor="notes">Add/Update Notes</Label>
-                        <Input placeholder="Notes" onChange={(e) => this.setState({comment: e.target.value})} name="notes" value={this.state.comment}></Input>
+                    <Input placeholder={this.props.comment} onChange={(e) => this.setState({comment: e.target.value})} name="notes" value={this.state.comment}>{this.props.comment}</Input>
                         <br/>
                         <Label htmlFor="notes">Add/Update Star Rating</Label>
-                        <Input  placeholder="0-5" type="number" min="0" max="5" onChange={(e) => this.setState({starRating: e.target.value})} value={this.state.starRating}></Input>
+                        <Input  placeholder={this.props.star.toString()} type="number" min="0" max="5" onChange={(e) => this.setState({starRating: e.target.value})} value={this.state.starRating}>{this.props.star}</Input>
                         
                     </ModalBody>
                     <ModalFooter>

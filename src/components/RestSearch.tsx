@@ -8,7 +8,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 type SearchState = {
     city: string;
-    bestRest: Array<string>;
+    bestRest: Array<any>;
     
 }
 
@@ -17,11 +17,13 @@ type MyProp = {
 }
 
 
+
 class RestSearch extends React.Component<MyProp, SearchState>{
     
     
     constructor(props: any){
         super(props)
+        this.topMapper = this.topMapper.bind(this)
         this.locationSearch = this.locationSearch.bind(this)
         this.state = {
             city: '',
@@ -71,15 +73,18 @@ class RestSearch extends React.Component<MyProp, SearchState>{
                         })
                     })
             })
+            
         }
-    
+            
 
 
-        topMapper(){
+         topMapper(){
             console.log(this.state.bestRest);
             
+
             
-            return this.state.bestRest.map((rest: any, index: number) => {
+            
+            return this.state.bestRest.map((rest: any) => {
                 return(
                     <Row id='searchRow'>
                            <Col xs="6">
@@ -87,7 +92,7 @@ class RestSearch extends React.Component<MyProp, SearchState>{
                      <p style={{color: "white"}}>Your Image Here!</p>
                      </Col>
                      <Col xs="6" id='restCol'>
-                     <h4>{index + 1}. {rest.name}</h4>
+                     <h4>{rest.name}</h4>
                      <br/>
                     <p>Type of Cuisine: {rest.cuisines}</p>
                     <p style={{color: '#'+rest.user_rating.rating_color}}>User Rating: {rest.user_rating.aggregate_rating}/5</p>
@@ -104,6 +109,8 @@ class RestSearch extends React.Component<MyProp, SearchState>{
             })
         }
 
+        
+    
         
 
         
