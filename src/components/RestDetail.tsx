@@ -210,7 +210,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
             <FontAwesomeIcon icon={faStar} size="1x" style={{color:'white'}}/></>}</p>
             <p>Posted on: {readDate}</p>
             {time == updateTime ? <></> : <p>Updated At: {updateDate}</p>}
-            <EditComment id={info.id} comment={info.comment} token={localStorage.getItem('token')} locationDetails={this.locationDetails}/>
+            <EditComment id={info.id} comment={info.comment} star={info.starRating} token={localStorage.getItem('token')} locationDetails={this.locationDetails}/>
                <DeleteComment token={localStorage.getItem('token')} locationDetails={this.locationDetails} id={info.id} />
             <br/>
             </>
@@ -251,7 +251,7 @@ class RestDetail extends React.Component<AcceptedProps, DetailState>{
                     <p>Address: {this.state.data.location.address}</p>
                     <p>Part of City: {this.state.data.location.locality_verbose}</p>
                     <p><a target='blank' href={this.state.data.menu_url}>View Menu</a></p>
-                    <Button onClick={this.sendRest}>Add to Try Later!</Button>
+                    <Button id='saveLaterBtn' onClick={this.sendRest}>Save for Later!</Button>
                </Col>
            </Row>
            <div>  

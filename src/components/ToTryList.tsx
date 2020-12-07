@@ -108,10 +108,12 @@ class ToTryList extends React.Component<AcceptedProps, ListState>{
         }
         else {
         return(
+            
             <div id='tryLaterContainer'>
                 <h2 id='headerList'>Try Later List</h2>
                 {this.listMapper()}
             </div>
+           
         ) }}
        
 

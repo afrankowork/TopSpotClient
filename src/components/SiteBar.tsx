@@ -62,7 +62,7 @@ class SiteBar extends React.Component<AcceptedProps, OpenState> {
     
     render() {
         return(
-            <div>
+            <div id='sitebarDiv'>
                 <Router>
             <Navbar id="navbarStyle" expand="md">
             <NavbarBrand className="siteItems" href="/">Home</NavbarBrand>
