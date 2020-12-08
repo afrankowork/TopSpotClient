@@ -50,7 +50,7 @@ render(){
             <div id='landFooter'>
                 <div id='firstPar'>
                     <h4>The Purpose</h4>
-                    <p>-Top Spots is intended to form users of highly rated restaurants in their area or by search.
+                    <p>-Top Spots is intended to inform users of highly rated restaurants in their area or by search.
                         The hope is to prevent the debacle of not being able to choose a place to eat. Also, to help
                         travelers in a new location find a great spot!
                     </p>
